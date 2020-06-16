@@ -1,24 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import Message from "./message.js"
+import Day from "./day.js"
 
 function App() {
+
+  let [count, setCount] = useState(0)
+
+  let [isMorning, setDayTime] = useState(false)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={` ${isMorning ? 'dayLight' : 'nightLight'}`}>
+      <Day dayTime = {isMorning ? "Morning" : "Night"} />
+      <button onClick = {()=> setDayTime(! isMorning)}>Change Day Time</button>
+      <hr />
+      <Message counter = {count} />
+      
+      <button onClick = {()=> setCount(count + 1)}>Update Value</button>
+      <br />
+      <button onClick = {()=> setCount(0)}> Reset Counter</button>
     </div>
   );
 }
